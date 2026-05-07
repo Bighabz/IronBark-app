@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}{{ code }} — IronBark{% endblock %}
+
+{% block content %}
+<section class="section section-narrow">
+    <div class="container error-wrap">
+        <div class="eyebrow mono">// ERROR_{{ code }}</div>
+        <h1 class="error-code mono">{{ code }}</h1>
+        <p class="muted">{{ message }}</p>
+        <a href="{{ url_for('home') }}" class="btn btn-primary">RETURN TO BASE →</a>
+    </div>
+</section>
+{% endblock %}

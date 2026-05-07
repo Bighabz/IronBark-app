@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}About — IronBark Security Solutions{% endblock %}
+
+{% block content %}
+<section class="section section-narrow">
+    <div class="container">
+        <div class="section-head">
+            <span class="eyebrow mono">// ABOUT</span>
+            <h1>Built by operators. Run by autonomous agents.</h1>
+            <p class="muted">IronBark Security Solutions was founded as a capstone project by four IST students at Cal State San Bernardino — four people who'd rather ship a working red-team platform than a PowerPoint deck.</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-block">
+                <h2>Our thesis</h2>
+                <p>Most security firms charge by the hour and deliver a PDF twice a year. That doesn't scale, and it doesn't tell you what's exploitable on your network <em>today</em>. So we built ClaWD — an autonomous red-team agent that runs continuously, reports in real time, and costs a fraction of a retained pen-test team.</p>
+            </div>
+            <div class="about-block">
+                <h2>Our boundaries</h2>
+                <p>We operate under strict rules of engagement. Every scan is authorized. Every engagement has a signed scope. ClaWD is not a script kiddie — it's a constrained, logged, audited system designed for enterprise use where uptime and trust matter.</p>
+            </div>
+        </div>
+
+        <div class="section-head" style="margin-top:96px">
+            <span class="eyebrow mono">// THE TEAM — DOGPARK GROUP</span>
+            <h2>Four students. One capstone.</h2>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="avatar mono">HJ</div>
+                <h3>Habib Jahshan</h3>
+                <span class="small muted mono">LEAD — PLATFORM</span>
+                <p>Infrastructure, Kali tooling, agent orchestration.</p>
+            </div>
+            <div class="team-card">
+                <div class="avatar mono">LP</div>
+                <h3>Liam Pearson</h3>
+                <span class="small muted mono">LEAD — RESEARCH</span>
+                <p>Vulnerability research, reporting, CSET scoring.</p>
+            </div>
+            <div class="team-card">
+                <div class="avatar mono">BD</div>
+                <h3>Brandon Deane</h3>
+                <span class="small muted mono">LEAD — PRODUCT</span>
+                <p>Product design, SecurePack hardware, customer experience.</p>
+            </div>
+            <div class="team-card">
+                <div class="avatar mono">DH</div>
+                <h3>Danny Hernandez</h3>
+                <span class="small muted mono">LEAD — WEB / AI</span>
+                <p>Web platform, AI integration, compliance dashboard.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

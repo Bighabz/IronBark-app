@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Engagement Status — IronBark Security Solutions{% endblock %}
+
+{% block content %}
+<section class="section section-narrow">
+    <div class="container status-wrap">
+        <div class="section-head">
+            <span class="eyebrow mono">// CLIENT PORTAL</span>
+            <h1>Check your engagement status.</h1>
+            <p class="muted">Enter the engagement code from your welcome email along with the email address on file. The AI assistant will summarize current status, findings, and remediation progress.</p>
+            <p class="small muted mono">DEMO CODES: IB-2026-0042 (cto@northridge-mfg.example) · IB-2026-0051 (security@ridgelineaero.example) · IB-2026-0063 (it@canyonhealthgroup.example)</p>
+        </div>
+
+        <form class="status-form" id="status-form" novalidate>
+            <div class="form-row">
+                <label>
+                    <span class="small muted mono">ENGAGEMENT CODE *</span>
+                    <input type="text" name="code" required maxlength="32" placeholder="IB-2026-XXXX" autocomplete="off">
+                </label>
+                <label>
+                    <span class="small muted mono">EMAIL ON FILE *</span>
+                    <input type="email" name="email" required maxlength="255" autocomplete="email">
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">LOOK UP STATUS →</button>
+            <span class="small muted" id="status-msg" aria-live="polite"></span>
+        </form>
+
+        <div class="status-result" id="status-result" hidden>
+            <div class="result-head">
+                <div>
+                    <div class="small muted mono">ENGAGEMENT</div>
+                    <h2 id="r-code"></h2>
+                </div>
+                <span class="status-badge mono" id="r-status"></span>
+            </div>
+
+            <div class="result-summary">
+                <div class="small muted mono">AI SUMMARY</div>
+                <p id="r-summary"></p>
+            </div>
+
+            <div class="result-grid">
+                <div class="result-card">
+                    <div class="small muted mono">CLIENT</div>
+                    <div id="r-company"></div>
+                </div>
+                <div class="result-card">
+                    <div class="small muted mono">SERVICE</div>
+                    <div id="r-service"></div>
+                </div>
+                <div class="result-card">
+                    <div class="small muted mono">LAST SCAN</div>
+                    <div id="r-last"></div>
+                </div>
+                <div class="result-card">
+                    <div class="small muted mono">NEXT SCAN</div>
+                    <div id="r-next"></div>
+                </div>
+            </div>
+
+            <div class="findings">
+                <div class="small muted mono">FINDINGS</div>
+                <div class="findings-grid">
+                    <div class="finding crit"><strong id="r-crit">0</strong><span>Critical</span></div>
+                    <div class="finding high"><strong id="r-high">0</strong><span>High</span></div>
+                    <div class="finding med"><strong id="r-med">0</strong><span>Medium</span></div>
+                    <div class="finding low"><strong id="r-low">0</strong><span>Low</span></div>
+                </div>
+            </div>
+
+            <div class="remediation">
+                <div class="small muted mono">REMEDIATION PROGRESS</div>
+                <div class="progress-bar"><div class="progress-fill" id="r-fill" style="width:0%"></div></div>
+                <div class="small mono" id="r-pct">0%</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="{{ url_for('static', filename='js/status.js') }}" defer></script>
+{% endblock %}

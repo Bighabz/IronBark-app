@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}{{ page_title }} — IronBark Security Solutions{% endblock %}
+
+{% block content %}
+<section class="section section-narrow">
+    <div class="container">
+        <div class="section-head">
+            <span class="eyebrow mono">// {{ page_title | upper }}</span>
+            <h1>{% if kind == 'service' %}Managed services for organizations that can't afford to guess.
+                {% elif kind == 'product' %}Products you can deploy on your own hardware.
+                {% else %}Everything we offer, filterable.
+                {% endif %}</h1>
+        </div>
+
+        <div class="catalog-controls">
+            <div class="filter-row" role="group" aria-label="Filter catalog">
+                <button class="filter-btn active mono" data-filter="all">ALL</button>
+                <button class="filter-btn mono" data-filter="service">SERVICES</button>
+                <button class="filter-btn mono" data-filter="product">PRODUCTS</button>
+            </div>
+            <div class="search-box">
+                <input type="search" id="catalog-search" placeholder="Search offerings..." aria-label="Search catalog">
+                <span class="mono small muted">⌘K</span>
+            </div>
+        </div>
+
+        <div class="catalog-grid" id="catalog-grid">
+            {% for item in items %}
+            <article class="catalog-card" id="{{ item.slug }}" data-kind="{{ item.kind }}" data-slug="{{ item.slug }}" data-search="{{ item.name|lower }} {{ item.tagline|lower }} {{ (item.tags or '')|lower }}">
+                <div class="card-head">
+                    <span class="tag mono {{ item.kind }}">{{ item.kind | upper }}</span>
+                    <span class="price mono small muted">{{ item.price_tier }}</span>
+                </div>
+                <h2>{{ item.name }}</h2>
+                <p class="card-tagline">{{ item.tagline }}</p>
+                <p class="card-desc">{{ item.description }}</p>
+                <div class="card-tags">
+                    {% for tag in (item.tags or '').split(',') if tag %}
+                    <span class="chip mono">{{ tag.strip() }}</span>
+                    {% endfor %}
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-ghost small explain-btn" data-slug="{{ item.slug }}" data-name="{{ item.name }}">
+                        Explain for my use case
+                    </button>
+                    <a href="{{ url_for('contact') }}?interested={{ item.slug }}" class="btn-link small">
+                        Request info →
+                    </a>
+                </div>
+                <div class="explain-panel" hidden>
+                    <div class="explain-form">
+                        <label class="small muted mono" for="ctx-{{ item.slug }}">YOUR CONTEXT</label>
+                        <textarea id="ctx-{{ item.slug }}" rows="3" maxlength="1000" placeholder="e.g. 120-employee manufacturer, DoD subcontractor, CMMC Level 2 required by Q3..."></textarea>
+                        <div class="explain-actions">
+                            <button class="btn btn-primary small explain-submit" data-slug="{{ item.slug }}">
+                                Ask IronBark AI
+                            </button>
+                            <button class="btn-link small explain-cancel">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="explain-result" hidden>
+                        <div class="small muted mono">AI RECOMMENDATION</div>
+                        <div class="explain-text"></div>
+                    </div>
+                </div>
+            </article>
+            {% else %}
+            <p class="muted">No items available. The catalog service may be offline.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<script src="{{ url_for('static', filename='js/catalog.js') }}" defer></script>
+{% endblock %}

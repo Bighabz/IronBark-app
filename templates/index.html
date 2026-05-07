@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block title %}IronBark Security Solutions — AI-Driven Managed Cybersecurity{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="scanline" aria-hidden="true"></div>
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <div class="eyebrow mono">&gt; DOGPARK_GROUP · IST-4910 · SPRING_2026</div>
+            <h1 class="hero-title">
+                <span class="line reveal" style="--d:0.0s">Security that</span>
+                <span class="line reveal" style="--d:0.15s">never <em>sleeps.</em></span>
+            </h1>
+            <p class="hero-lede reveal" style="--d:0.35s">
+                IronBark runs AI-driven red team operations against your network around the clock.
+                Autonomous hacking agents, compliance audits scored to NIST and CMMC,
+                and hardened infrastructure built secure from the first packet.
+            </p>
+            <div class="hero-cta reveal" style="--d:0.5s">
+                <a href="{{ url_for('services') }}" class="btn btn-primary">
+                    SEE OUR SERVICES
+                    <span class="arrow">→</span>
+                </a>
+                <a href="{{ url_for('contact') }}" class="btn btn-ghost">
+                    Request a briefing
+                </a>
+            </div>
+            <div class="hero-stats reveal" style="--d:0.65s">
+                <div><strong>24/7</strong><span>Continuous scanning</span></div>
+                <div><strong>3</strong><span>Compliance frameworks</span></div>
+                <div><strong>0</strong><span>Managed breaches since 2026</span></div>
+            </div>
+        </div>
+
+        <div class="terminal reveal" style="--d:0.75s" aria-hidden="true">
+            <div class="terminal-head">
+                <span class="dot red"></span><span class="dot yel"></span><span class="dot grn"></span>
+                <span class="mono small">clawd@ironbark — pentest.session</span>
+            </div>
+            <div class="terminal-body" id="terminal-body">
+                <div class="term-line">$ clawd --target corp.internal --mode continuous</div>
+                <div class="term-line">[<span class="cyan">INFO</span>] Loading engagement IB-2026-0042...</div>
+                <div class="term-line">[<span class="cyan">INFO</span>] Authenticating to control plane... <span class="grn">OK</span></div>
+                <div class="term-line">[<span class="cyan">SCAN</span>] nmap -sS -sV 10.0.1.0/24</div>
+                <div class="term-line">[<span class="cyan">SCAN</span>] 10.0.1.1   <span class="grn">open/filtered</span></div>
+                <div class="term-line">[<span class="cyan">SCAN</span>] 10.0.1.100 <span class="amb">http (IIS/10.0)</span></div>
+                <div class="term-line">[<span class="cyan">SCAN</span>] 10.0.1.200 <span class="amb">mysql (8.0.36)</span></div>
+                <div class="term-line">[<span class="red">FIND</span>] CVE-2023-XXXX on 10.0.1.45 — <span class="amb">HIGH</span></div>
+                <div class="term-line">[<span class="cyan">PUSH</span>] Alert → Slack #sec-ops ✓</div>
+                <div class="term-line">[<span class="cyan">PUSH</span>] Alert → Discord #ironbark ✓</div>
+                <div class="term-line">[<span class="grn">DONE</span>] Report saved: /reports/2026-04-22.json</div>
+                <div class="term-line term-cursor">$ <span class="cursor">▊</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-head">
+            <span class="eyebrow mono">// CAPABILITIES</span>
+            <h2>Three services. Three products. One security posture.</h2>
+            <p class="muted">
+                We don't sell a hundred SKUs. We sell a focused stack — managed operations,
+                compliance audits, infrastructure work — backed by the same autonomous
+                agents that power our commercial products.
+            </p>
+        </div>
+
+        <div class="offer-grid">
+            {% for item in featured %}
+            <a href="{% if item.kind == 'service' %}{{ url_for('services') }}{% else %}{{ url_for('products') }}{% endif %}#{{ item.slug }}" class="offer-card">
+                <div class="offer-head">
+                    <span class="tag mono">{{ item.kind | upper }}</span>
+                    <span class="arrow">↗</span>
+                </div>
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.tagline }}</p>
+                <div class="offer-tags">
+                    {% for tag in (item.tags or '').split(',') if tag %}
+                    <span class="chip mono">{{ tag.strip() }}</span>
+                    {% endfor %}
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section pillars">
+    <div class="container">
+        <div class="section-head">
+            <span class="eyebrow mono">// HOW IT WORKS</span>
+            <h2>Autonomous agents. Human oversight. Clear reporting.</h2>
+        </div>
+
+        <div class="pillar-grid">
+            <div class="pillar">
+                <span class="pillar-num mono">01</span>
+                <h3>Deploy</h3>
+                <p>We drop a SecurePack appliance on your network — or self-host ClaWD on hardware you already own. No cloud required.</p>
+            </div>
+            <div class="pillar">
+                <span class="pillar-num mono">02</span>
+                <h3>Scan</h3>
+                <p>ClaWD runs continuous red-team assessments on your schedule. Findings route to Slack or Discord in real time.</p>
+            </div>
+            <div class="pillar">
+                <span class="pillar-num mono">03</span>
+                <h3>Score</h3>
+                <p>Findings roll up into CSET-aligned compliance scorecards against NIST 800-171, CMMC, and DoD baselines.</p>
+            </div>
+            <div class="pillar">
+                <span class="pillar-num mono">04</span>
+                <h3>Remediate</h3>
+                <p>We prioritize remediation by real-world exploitability, not CVSS theater. Your team knows what to fix Monday morning.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section cta-section">
+    <div class="container cta-box">
+        <div>
+            <span class="eyebrow mono">// READY WHEN YOU ARE</span>
+            <h2>Let's find out what's already on your network.</h2>
+            <p class="muted">Free 30-minute briefing. No slide deck. We'll walk through what a first engagement looks like.</p>
+        </div>
+        <div class="cta-actions">
+            <a href="{{ url_for('contact') }}" class="btn btn-primary">BOOK A BRIEFING →</a>
+            <a href="{{ url_for('status') }}" class="btn btn-ghost">Existing client? Check status</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

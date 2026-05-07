@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Contact — IronBark Security Solutions{% endblock %}
+
+{% block content %}
+<section class="section section-narrow">
+    <div class="container contact-wrap">
+        <div class="contact-copy">
+            <span class="eyebrow mono">// CONTACT</span>
+            <h1>Let's talk about what's on your network.</h1>
+            <p class="muted">Tell us a bit about your environment and what you're trying to protect. We respond to every inquiry within one business day.</p>
+
+            <div class="contact-meta">
+                <div>
+                    <div class="small muted mono">EMAIL</div>
+                    <div>hello@ironbark.security</div>
+                </div>
+                <div>
+                    <div class="small muted mono">OPERATIONS</div>
+                    <div>24 / 7 · Discord + Slack</div>
+                </div>
+                <div>
+                    <div class="small muted mono">HQ</div>
+                    <div>San Bernardino, CA · CSUSB</div>
+                </div>
+            </div>
+        </div>
+
+        <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-row">
+                <label>
+                    <span class="small muted mono">NAME *</span>
+                    <input type="text" name="name" required maxlength="128" autocomplete="name">
+                </label>
+                <label>
+                    <span class="small muted mono">EMAIL *</span>
+                    <input type="email" name="email" required maxlength="255" autocomplete="email">
+                </label>
+            </div>
+            <label>
+                <span class="small muted mono">COMPANY</span>
+                <input type="text" name="company" maxlength="128" autocomplete="organization">
+            </label>
+            <label>
+                <span class="small muted mono">HOW CAN WE HELP? *</span>
+                <textarea name="message" rows="6" required maxlength="4000" placeholder="Environment size, industry, compliance requirements, current concerns..."></textarea>
+            </label>
+            <div class="form-foot">
+                <button type="submit" class="btn btn-primary">
+                    SEND MESSAGE <span class="arrow">→</span>
+                </button>
+                <span class="small muted" id="contact-status" aria-live="polite"></span>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script src="{{ url_for('static', filename='js/contact.js') }}" defer></script>
+{% endblock %}
