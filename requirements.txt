@@ -1,0 +1,12 @@
+Flask==3.0.3
+python-dotenv==1.0.1
+requests==2.32.3
+
+# Pick ONE based on your Database VM:
+PyMySQL==1.1.1       # if MySQL / MariaDB on 10.0.1.200
+# pyodbc==5.1.0      # if Microsoft SQL Server on 10.0.1.200
+
+# For hosting under IIS (choose one approach):
+# wfastcgi==3.0.0    # Classic FastCGI approach
+# waitress==3.0.0    # Production WSGI server (recommended with HttpPlatformHandler)
+waitress==3.0.0
